@@ -1,6 +1,5 @@
 [
   {
-    "id": "magdalena",
     "nombre": "Magdalena",
     "especie": "gato",
     "edad": "Aproximadamente 5 meses y medio",
@@ -15,6 +14,13 @@
     "fotos": [
       "img/magdalena1.jpg",
       "img/magdalena2.jpg"
+    ]
+  },
+  {
+    "nombre": "Kea",
+    "especie": "gato",
+    "fotos": [
+      "img/kea-1.jpg"
     ]
   }
 ]
