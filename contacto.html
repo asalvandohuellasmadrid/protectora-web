@@ -79,8 +79,11 @@
 
             <div class="contacto-form-container">
                 <h2>Envíanos un Mensaje</h2>
-                <p id="formulario-ayuda" style="margin-bottom: 1rem; color: var(--color-texto-suave);">Al enviar, se abrirá tu aplicación de correo con el mensaje preparado para que lo revises y lo envíes.</p>
-                <form data-contact-form class="form-contacto" aria-describedby="formulario-ayuda">
+                <p id="formulario-ayuda" style="margin-bottom: 1rem; color: var(--color-texto-suave);">Al enviar, tu consulta se remitirá al correo de la asociación mediante un servicio externo. No incluyas información sensible que no sea necesaria.</p>
+                <form action="https://formsubmit.co/asalvandohuellasmadrid@gmail.com" method="POST" data-contact-form class="form-contacto" aria-describedby="formulario-ayuda">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde la web de APA Salvando Huellas Madrid">
+                    <input type="hidden" name="_next" value="https://asalvandohuellasmadrid.github.io/protectora-web/contacto.html?enviado=1">
+                    <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display: none;">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">

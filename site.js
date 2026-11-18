@@ -49,31 +49,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const form = document.querySelector('[data-contact-form]');
     if (form) {
-        form.addEventListener('submit', function (event) {
-            event.preventDefault();
+        const estado = document.getElementById('estadoFormulario');
+        const parametros = new URLSearchParams(window.location.search);
 
-            const fields = new FormData(form);
-            const nombre = String(fields.get('nombre') || '').trim();
-            const email = String(fields.get('email') || '').trim();
-            const telefono = String(fields.get('telefono') || '').trim();
-            const mensaje = String(fields.get('mensaje') || '').trim();
-            const cuerpo = [
-                'Nombre: ' + nombre,
-                'Correo: ' + email,
-                'Teléfono: ' + (telefono || 'No indicado'),
-                '',
-                mensaje
-            ].join('\n');
-            const asunto = 'Mensaje desde la web - ' + nombre;
-            const estado = document.getElementById('estadoFormulario');
-
-            if (estado) {
-                estado.textContent = 'Se abrirá tu aplicación de correo para que revises y envíes el mensaje. Si no se abre, puedes escribir a asalvandohuellasmadrid@gmail.com.';
-            }
-
-            window.location.href = 'mailto:asalvandohuellasmadrid@gmail.com?subject='
-                + encodeURIComponent(asunto)
-                + '&body=' + encodeURIComponent(cuerpo);
-        });
+        if (estado && parametros.get('enviado') === '1') {
+            estado.textContent = 'Gracias, tu mensaje se ha enviado. La asociación se pondrá en contacto contigo.';
+        }
     }
 });
