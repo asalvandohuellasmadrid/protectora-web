@@ -19,6 +19,14 @@
   {
     "nombre": "Kea",
     "especie": "gato",
+    "edad": "2",
+    "sexo": "Hembra",
+    "caracter": "dsfsdfs",
+    "convivencia": "sdfsdfsd",
+    "ubicacion": "sdfsfs",
+    "subtitulo": "sdfsdfs",
+    "descripcion": "sdfsdf",
+    "historiaCompleta": "sdfsdfsdf",
     "fotos": [
       "img/kea-1.jpg"
     ]
