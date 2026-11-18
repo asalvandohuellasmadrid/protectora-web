@@ -941,6 +941,12 @@ textarea:focus-visible {
     font-size: 1.5rem;
 }
 
+.info-icon svg {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 .info-card h3 {
     font-size: 1rem;
     color: var(--color-principal);
