@@ -899,17 +899,21 @@ textarea:focus-visible {
 
 .contacto-grid {
     display: grid;
-    grid-template-columns: 1fr 1.3fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
     gap: 3rem;
 }
 
 @media (max-width: 768px) {
-    .contacto-grid { grid-template-columns: 1fr; }
+    .contacto-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+    }
     .detalle-card { grid-template-columns: 1fr; }
 }
 
 .contacto-info,
 .contacto-form-container {
+    min-width: 0;
     background: var(--color-blanco);
     padding: 2.5rem;
     border-radius: 12px;
@@ -929,6 +933,10 @@ textarea:focus-visible {
     margin-top: 1.5rem;
 }
 
+.info-card > div {
+    min-width: 0;
+}
+
 .info-icon {
     font-size: 1.5rem;
 }
@@ -942,6 +950,7 @@ textarea:focus-visible {
 .info-card a {
     color: var(--color-secundario);
     text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 .info-card a:hover {
@@ -1289,6 +1298,11 @@ footer a {
     .contacto-info,
     .contacto-form-container {
         padding: 1.5rem;
+    }
+
+    .contacto-main {
+        margin: 2rem auto;
+        padding: 0 1rem;
     }
 }
 
