@@ -1,0 +1,94 @@
+media:
+  input: img
+  output: img
+
+content:
+  - name: animales
+    label: Animales en Adopción
+    type: file
+    path: datos/animales.json
+    format: json
+    list: true
+    fields:
+      - name: nombre
+        label: Nombre del animal
+        type: string
+      - name: especie
+        label: Especie
+        type: select
+        options:
+          values: [perro, gato]
+      - name: edad
+        label: Edad aproximada
+        type: string
+      - name: sexo
+        label: Sexo (Macho / Hembra)
+        type: string
+      - name: caracter
+        label: Carácter
+        type: string
+      - name: convivencia
+        label: Convivencia (perros, gatos, niños...)
+        type: string
+      - name: ubicacion
+        label: Zona de adopción
+        type: string
+      - name: subtitulo
+        label: Resumen corto (para la tarjeta)
+        type: string
+      - name: descripcion
+        label: Descripción breve (para la tarjeta)
+        type: text
+      - name: historiaCompleta
+        label: Historia completa (para su ficha individual)
+        type: text
+      - name: foto
+        label: Foto principal
+        type: image
+      - name: fotos
+        label: Galería de fotos (puedes subir varias)
+        type: image
+        list: true
+
+  - name: adoptados
+    label: Finales Felices (Adoptados)
+    type: file
+    path: datos/adoptados.json
+    format: json
+    list: true
+    fields:
+      - name: nombre
+        label: Nombre
+        type: string
+      - name: subtitulo
+        label: Información de adopción
+        type: string
+      - name: historia
+        label: Historia feliz
+        type: text
+      - name: foto
+        label: Foto
+        type: image
+
+  - name: noticias
+    label: Noticias y Actualidad
+    type: file
+    path: datos/noticias.json
+    format: json
+    list: true
+    fields:
+      - name: titulo
+        label: Titular
+        type: string
+      - name: fecha
+        label: Fecha o etiqueta
+        type: string
+      - name: resumen
+        label: Resumen para la tarjeta
+        type: text
+      - name: contenido
+        label: Texto completo de la noticia
+        type: text
+      - name: foto
+        label: Imagen de portada
+        type: image

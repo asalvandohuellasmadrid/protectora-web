@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia de adopción - APA Salvando Huellas Madrid</title>
+    <meta name="description" content="Conoce la historia de un animal adoptado y su nueva familia.">
+    <meta property="og:title" content="Historia de adopción - APA Salvando Huellas Madrid">
+    <meta property="og:description" content="Historias de animales que encontraron un hogar definitivo.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="es_ES">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="site.js"></script>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="nav-izquierda">
+                <a href="index.html" class="logo-flotante" title="APA Salvando Huellas Madrid">
+                    <img src="img/logo.png" alt="Logo APA Salvando Huellas Madrid">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="adopta.html">Adopta</a></li>
+                        <li><a href="ayuda.html">Colabora</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="adoptados.html" class="activo">Adoptados</a></li>
+                        <li><a href="noticias.html">Noticias</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="nav-derecha">
+                <a href="https://www.instagram.com/asalvandohuellasmadrid/?hl=es" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://www.facebook.com/share/1FJwT4Q8pW/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="detalle-contenedor">
+        <a href="adoptados.html" class="detalle-volver">&larr; Volver a finales felices</a>
+        <div id="contenidoAdoptado" aria-live="polite" aria-busy="true">Cargando historia...</div>
+    </main>
+
+    <footer style="background: var(--color-principal); color: var(--color-blanco); text-align: center; padding: 2rem; margin-top: 4rem;">
+        <p>&copy; 2026 APA Salvando Huellas Madrid. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const parametros = new URLSearchParams(window.location.search);
+        const idParametro = parametros.get('id');
+        const idAdoptado = idParametro !== null && /^\d+$/.test(idParametro) ? Number(idParametro) : null;
+
+        function escapeHTML(valor) {
+            return String(valor == null ? '' : valor).replace(/[&<>"']/g, caracter => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[caracter]);
+        }
+
+        fetch('datos/adoptados.json')
+            .then(respuesta => {
+                if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+                return respuesta.json();
+            })
+            .then(datos => {
+                const adoptado = Number.isInteger(idAdoptado) && idAdoptado >= 0 ? datos[idAdoptado] : null;
+                const contenido = document.getElementById('contenidoAdoptado');
+                contenido.setAttribute('aria-busy', 'false');
+
+                if (!adoptado) {
+                    contenido.innerHTML = '<p role="alert">No se encontró esta historia. <a href="adoptados.html">Volver a finales felices</a>.</p>';
+                    return;
+                }
+
+                const nombre = adoptado.nombre || 'Animal adoptado';
+                document.title = `${nombre} - Historia de adopción | APA Salvando Huellas Madrid`;
+                document.querySelector('meta[name="description"]').setAttribute('content', `Conoce la historia de ${nombre} y cómo encontró su hogar definitivo.`);
+                document.querySelector('meta[property="og:title"]').setAttribute('content', `${nombre} - Historia de adopción`);
+
+                contenido.innerHTML = `
+                    <article class="detalle-card">
+                        <img class="detalle-imagen" src="${escapeHTML(adoptado.foto || 'img/logo.png')}" alt="${escapeHTML(nombre)}" decoding="async">
+                        <div>
+                            <span class="detalle-etiqueta">¡Adoptado!</span>
+                            <h1 class="detalle-titulo">${escapeHTML(nombre)}</h1>
+                            <p class="detalle-meta">${escapeHTML(adoptado.subtitulo)}</p>
+                            <h2 class="detalle-subtitulo">Su historia</h2>
+                            <p class="detalle-texto">${escapeHTML(adoptado.historia)}</p>
+                        </div>
+                    </article>
+                `;
+            })
+            .catch(error => {
+                console.error('No se pudo cargar la historia de adopción.', error);
+                const contenido = document.getElementById('contenidoAdoptado');
+                contenido.setAttribute('aria-busy', 'false');
+                contenido.innerHTML = '<p role="alert">No se pudo cargar la historia. Inténtalo de nuevo más tarde. <a href="adoptados.html">Volver a finales felices</a>.</p>';
+            });
+    </script>
+</body>
+</html>

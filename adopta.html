@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animales en Adopción - APA Salvando Huellas Madrid</title>
+    <meta name="description" content="Descubre perros y gatos en adopción con APA Salvando Huellas Madrid y conoce los pasos para iniciar una adopción responsable.">
+    <meta property="og:title" content="Animales en adopción - APA Salvando Huellas Madrid">
+    <meta property="og:description" content="Conoce a los animales que buscan una familia y consulta los cuestionarios de adopción.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="site.js"></script>
+    <style>
+        .carrusel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(var(--color-principal-rgb), 0.78);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: background 0.2s;
+        }
+        .carrusel-btn:hover { background: var(--color-principal); }
+        .carrusel-prev { left: 10px; }
+        .carrusel-next { right: 10px; }
+        .carrusel-indicador {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.55);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            z-index: 5;
+        }
+        .card-titulo-link {
+            color: var(--color-principal);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .card-titulo-link:hover {
+            color: var(--color-secundario);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="nav-izquierda">
+                <a href="index.html" class="logo-flotante" title="APA Salvando Huellas Madrid">
+                    <img src="img/logo.png" alt="Logo APA Salvando Huellas Madrid">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="adopta.html" class="activo">Adopta</a></li>
+                        <li><a href="ayuda.html">Colabora</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="adoptados.html">Adoptados</a></li>
+                        <li><a href="noticias.html">Noticias</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="nav-derecha">
+                <a href="https://www.instagram.com/asalvandohuellasmadrid/?hl=es" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://www.facebook.com/share/1FJwT4Q8pW/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Nuestros Peludos en Adopción</h1>
+        <p>Adoptar es una responsabilidad para toda la vida. No buscamos adopciones rápidas, buscamos adopciones para siempre.</p>
+    </div>
+
+    <main class="seccion-adopta">
+        
+        <div class="cuestionarios-aviso" style="background: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center;">
+            <h3 style="color: var(--color-principal); margin-bottom: 0.8rem;">¿Quieres iniciar un proceso de adopción?</h3>
+            <p style="color: var(--color-texto-suave); margin-bottom: 1.5rem; line-height: 1.6;">Zona de actuación: Comunidad de Madrid y Cantabria (y alrededores). En adopciones de gatos exigimos protecciones adecuadas en ventanas y balcones.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSccw9qkx4_vQivaRchsD4_r8EiMo2wWt8z2Nt9zDNnROLEuzA/viewform?usp=sf_link" target="_blank" rel="noopener noreferrer" class="btn btn-adopcion">Cuestionario Gatos</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNgK9dBC3e8Nv4xgf6OJTSwXre_onuglV04QcsGLMIJBMWdA/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="btn btn-adopcion">Cuestionario Perros</a>
+            </div>
+        </div>
+
+        <div class="filtros-container" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+            <button class="btn-filtro activo" onclick="filtrar('todos', this)">Todos</button>
+            <button class="btn-filtro" onclick="filtrar('perro', this)">Perros</button>
+            <button class="btn-filtro" onclick="filtrar('gato', this)">Gatos</button>
+        </div>
+
+        <div class="grid-animales" id="gridAnimales" aria-live="polite" aria-busy="true" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;">Cargando animales...</div>
+    </main>
+
+    <footer style="background: var(--color-principal); color: var(--color-blanco); text-align: center; padding: 2rem; margin-top: 4rem;">
+        <p>&copy; 2026 APA Salvando Huellas Madrid. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let todosLosAnimales = [];
+        let indicesFotos = {};
+
+        function escapeHTML(valor) {
+            return String(valor == null ? '' : valor).replace(/[&<>"']/g, caracter => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[caracter]);
+        }
+
+        fetch('datos/animales.json')
+            .then(respuesta => {
+                if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+                return respuesta.json();
+            })
+            .then(datos => {
+                todosLosAnimales = datos;
+                mostrarAnimales('todos');
+            })
+            .catch(error => {
+                console.error('No se pudieron cargar los animales.', error);
+                const contenedor = document.getElementById('gridAnimales');
+                contenedor.setAttribute('aria-busy', 'false');
+                contenedor.innerHTML = '<p role="alert" style="grid-column: 1/-1; text-align: center;">No se pudo cargar el catálogo. Inténtalo de nuevo más tarde o contáctanos.</p>';
+            });
+
+        function cambiarFoto(event, indexAnimal, direccion) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const animal = todosLosAnimales[indexAnimal];
+            const listaFotos = (animal.fotos && animal.fotos.length > 0) ? animal.fotos : [animal.foto || 'img/logo.png'];
+            
+            let actual = indicesFotos[indexAnimal] || 0;
+            actual = (actual + direccion + listaFotos.length) % listaFotos.length;
+            indicesFotos[indexAnimal] = actual;
+
+            const imgEl = document.getElementById(`img-animal-${indexAnimal}`);
+            const indEl = document.getElementById(`ind-animal-${indexAnimal}`);
+            if (imgEl) imgEl.src = listaFotos[actual];
+            if (indEl) indEl.textContent = `${actual + 1} / ${listaFotos.length}`;
+        }
+
+        function mostrarAnimales(filtro) {
+            const contenedor = document.getElementById('gridAnimales');
+            contenedor.innerHTML = '';
+            contenedor.setAttribute('aria-busy', 'false');
+
+            const filtrados = todosLosAnimales
+                .map((animal, idx) => ({ ...animal, originalIndex: idx }))
+                .filter(animal => {
+                    let esp = (animal.especie || '').toLowerCase().trim();
+                    if (esp.endsWith('s')) esp = esp.slice(0, -1);
+                    if (filtro === 'todos') return true;
+                    return esp === filtro;
+                });
+
+            if (filtrados.length === 0) {
+                contenedor.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--color-texto-suave); padding: 2rem;">No hay animales disponibles en esta categoría en este momento.</p>';
+                return;
+            }
+
+            filtrados.forEach(animal => {
+                const idx = animal.originalIndex;
+                let esp = (animal.especie || '').toLowerCase().trim();
+                const esPerro = esp.includes('perro');
+                const etiqueta = esPerro ? 'Perro' : 'Gato';
+                const listaFotos = (animal.fotos && animal.fotos.length > 0) ? animal.fotos : [animal.foto || 'img/logo.png'];
+                const tieneVarias = listaFotos.length > 1;
+                const urlFicha = `ficha.html?id=${idx}`;
+                const nombre = escapeHTML(animal.nombre || 'Animal en adopción');
+                const foto = escapeHTML(listaFotos[0]);
+
+                const controlesCarrusel = tieneVarias ? `
+                    <button class="carrusel-btn carrusel-prev" onclick="cambiarFoto(event, ${idx}, -1)" aria-label="Foto anterior de ${nombre}" title="Foto anterior">&#8249;</button>
+                    <button class="carrusel-btn carrusel-next" onclick="cambiarFoto(event, ${idx}, 1)" aria-label="Siguiente foto de ${nombre}" title="Siguiente foto">&#8250;</button>
+                    <span class="carrusel-indicador" id="ind-animal-${idx}">1 / ${listaFotos.length}</span>
+                ` : '';
+
+                contenedor.innerHTML += `
+                    <div class="card-animal" style="background: var(--color-blanco); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+                        <div class="card-img" style="position: relative; height: 240px; background: var(--color-superficie-suave);">
+                            <a href="${urlFicha}" style="display: block; width: 100%; height: 100%;">
+                                <img id="img-animal-${idx}" src="${foto}" alt="${nombre}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
+                            </a>
+                            <span class="badge-especie" style="position: absolute; top: 12px; right: 12px; background: var(--color-principal); color: var(--color-blanco); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; z-index: 4;">${etiqueta}</span>
+                            ${controlesCarrusel}
+                        </div>
+                        <div class="card-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+                            <h3 style="margin-bottom: 0.4rem; font-size: 1.3rem;">
+                                <a href="${urlFicha}" class="card-titulo-link">${nombre}</a>
+                            </h3>
+                            <p class="card-info" style="color: var(--color-acento); font-size: 0.9rem; font-weight: bold; margin-bottom: 0.8rem;">${escapeHTML(animal.subtitulo)}</p>
+                            <p class="card-desc" style="color: var(--color-texto-suave); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; flex-grow: 1;">${escapeHTML(animal.descripcion)}</p>
+                            <a href="${urlFicha}" class="btn-card">Conocer su historia</a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filtrar(tipo, boton) {
+            document.querySelectorAll('.btn-filtro').forEach(b => {
+                b.classList.remove('activo');
+            });
+            boton.classList.add('activo');
+            mostrarAnimales(tipo);
+        }
+    </script>
+</body>
+</html>

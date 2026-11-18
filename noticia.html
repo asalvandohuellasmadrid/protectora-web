@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticia - APA Salvando Huellas Madrid</title>
+    <meta name="description" content="Lee la noticia completa de APA Salvando Huellas Madrid.">
+    <meta property="og:title" content="Noticia - APA Salvando Huellas Madrid">
+    <meta property="og:description" content="Actualidad, rescates y campañas de nuestra asociación.">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="es_ES">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="site.js"></script>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <div class="nav-izquierda">
+                <a href="index.html" class="logo-flotante" title="APA Salvando Huellas Madrid">
+                    <img src="img/logo.png" alt="Logo APA Salvando Huellas Madrid">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="adopta.html">Adopta</a></li>
+                        <li><a href="ayuda.html">Colabora</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="adoptados.html">Adoptados</a></li>
+                        <li><a href="noticias.html" class="activo">Noticias</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="nav-derecha">
+                <a href="https://www.instagram.com/asalvandohuellasmadrid/?hl=es" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://www.facebook.com/p/APA-Salvando-Huellas-Madrid-100081084556541/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="detalle-contenedor">
+        <a href="noticias.html" class="detalle-volver">&larr; Volver a noticias</a>
+        <div id="contenidoNoticia" aria-live="polite" aria-busy="true">Cargando noticia...</div>
+    </main>
+
+    <footer style="background: var(--color-principal); color: var(--color-blanco); text-align: center; padding: 2rem; margin-top: 4rem;">
+        <p>&copy; 2026 APA Salvando Huellas Madrid. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const parametros = new URLSearchParams(window.location.search);
+        const idParametro = parametros.get('id');
+        const idNoticia = idParametro !== null && /^\d+$/.test(idParametro) ? Number(idParametro) : null;
+
+        function escapeHTML(valor) {
+            return String(valor == null ? '' : valor).replace(/[&<>"']/g, caracter => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[caracter]);
+        }
+
+        fetch('datos/noticias.json')
+            .then(respuesta => {
+                if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+                return respuesta.json();
+            })
+            .then(datos => {
+                const noticia = Number.isInteger(idNoticia) && idNoticia >= 0 ? datos[idNoticia] : null;
+                const contenido = document.getElementById('contenidoNoticia');
+                contenido.setAttribute('aria-busy', 'false');
+
+                if (!noticia) {
+                    contenido.innerHTML = '<p role="alert">No se encontró esta noticia. <a href="noticias.html">Volver a noticias</a>.</p>';
+                    return;
+                }
+
+                const titulo = noticia.titulo || 'Noticia';
+                document.title = `${titulo} | APA Salvando Huellas Madrid`;
+                document.querySelector('meta[name="description"]').setAttribute('content', noticia.resumen || titulo);
+                document.querySelector('meta[property="og:title"]').setAttribute('content', `${titulo} - APA Salvando Huellas Madrid`);
+                document.querySelector('meta[property="og:description"]').setAttribute('content', noticia.resumen || titulo);
+
+                contenido.innerHTML = `
+                    <article class="detalle-card">
+                        <img class="detalle-imagen" src="${escapeHTML(noticia.foto || 'img/logo.png')}" alt="${escapeHTML(titulo)}" decoding="async">
+                        <div>
+                            <span class="detalle-etiqueta">${escapeHTML(noticia.fecha || 'Actualidad')}</span>
+                            <h1 class="detalle-titulo">${escapeHTML(titulo)}</h1>
+                            <div class="detalle-texto">${escapeHTML(noticia.contenido || noticia.resumen)}</div>
+                        </div>
+                    </article>
+                `;
+            })
+            .catch(error => {
+                console.error('No se pudo cargar la noticia.', error);
+                const contenido = document.getElementById('contenidoNoticia');
+                contenido.setAttribute('aria-busy', 'false');
+                contenido.innerHTML = '<p role="alert">No se pudo cargar la noticia. Inténtalo de nuevo más tarde. <a href="noticias.html">Volver a noticias</a>.</p>';
+            });
+    </script>
+</body>
+</html>

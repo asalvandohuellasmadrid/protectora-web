@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finales Felices (Adoptados) - APA Salvando Huellas Madrid</title>
+    <meta name="description" content="Conoce las historias de los animales adoptados y sus nuevas familias con APA Salvando Huellas Madrid.">
+    <meta property="og:title" content="Finales felices - APA Salvando Huellas Madrid">
+    <meta property="og:description" content="Historias de animales que ya encontraron un hogar definitivo.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="site.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="nav-izquierda">
+                <a href="index.html" class="logo-flotante" title="APA Salvando Huellas Madrid">
+                    <img src="img/logo.png" alt="Logo APA Salvando Huellas Madrid">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="adopta.html">Adopta</a></li>
+                        <li><a href="ayuda.html">Colabora</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="adoptados.html" class="activo">Adoptados</a></li>
+                        <li><a href="noticias.html">Noticias</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="nav-derecha">
+                <a href="https://www.instagram.com/asalvandohuellasmadrid/?hl=es" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://www.facebook.com/share/1FJwT4Q8pW/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Finales Felices</h1>
+        <p>Ellos ya encontraron su hogar definitivo. Historias como la de Kea que nos dan fuerzas para seguir.</p>
+    </div>
+
+    <main class="seccion-adoptados" style="max-width: 1100px; margin: 3rem auto; padding: 0 2rem;">
+        <div class="grid-adoptados" id="gridAdoptados" aria-live="polite" aria-busy="true" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem;">Cargando historias...</div>
+    </main>
+
+    <footer style="background: var(--color-principal); color: var(--color-blanco); text-align: center; padding: 2rem; margin-top: 4rem;">
+        <p>&copy; 2026 APA Salvando Huellas Madrid. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function escapeHTML(valor) {
+            return String(valor == null ? '' : valor).replace(/[&<>"']/g, caracter => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[caracter]);
+        }
+
+        fetch('datos/adoptados.json')
+            .then(respuesta => {
+                if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+                return respuesta.json();
+            })
+            .then(datos => {
+                const contenedor = document.getElementById('gridAdoptados');
+                contenedor.innerHTML = '';
+                contenedor.setAttribute('aria-busy', 'false');
+                if (datos.length === 0) {
+                    contenedor.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Todavía no hay historias publicadas.</p>';
+                    return;
+                }
+                datos.forEach((ad, indice) => {
+                    const nombre = escapeHTML(ad.nombre || 'Animal adoptado');
+                    contenedor.innerHTML += `
+                        <a class="card-adoptado card-adoptado-enlace" href="adoptado.html?id=${indice}" aria-label="Leer la historia de ${nombre}" style="background: var(--color-blanco); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+                            <div class="card-img-adoptado" style="width: 100%; height: 240px; position: relative; overflow: hidden; background: var(--color-superficie-suave);">
+                                <img src="${escapeHTML(ad.foto)}" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                <span class="badge-feliz" style="position: absolute; top: 12px; right: 12px; background: var(--color-principal); color: var(--color-blanco); padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; z-index: 4;">¡Adoptado! 🏠</span>
+                            </div>
+                            <div class="card-content" style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
+                                <h3 style="color: var(--color-principal); margin-bottom: 0.4rem; font-size: 1.3rem;">${nombre}</h3>
+                                <p class="card-info" style="color: var(--color-acento); font-size: 0.9rem; font-weight: bold; margin-bottom: 0.8rem;">${escapeHTML(ad.subtitulo)}</p>
+                                <p class="card-desc" style="color: var(--color-texto-suave); font-size: 0.95rem; line-height: 1.5; flex-grow: 1;">"${escapeHTML(ad.historia)}"</p>
+                                <span class="enlace-card">Leer su historia completa &rarr;</span>
+                            </div>
+                        </a>
+                    `;
+                });
+            })
+            .catch(error => {
+                console.error('No se pudieron cargar las historias de adopción.', error);
+                const contenedor = document.getElementById('gridAdoptados');
+                contenedor.setAttribute('aria-busy', 'false');
+                contenedor.innerHTML = '<p role="alert" style="grid-column: 1/-1; text-align: center;">No se pudieron cargar las historias. Inténtalo de nuevo más tarde.</p>';
+            });
+    </script>
+</body>
+</html>

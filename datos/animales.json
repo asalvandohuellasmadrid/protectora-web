@@ -1,0 +1,20 @@
+[
+  {
+    "id": "magdalena",
+    "nombre": "Magdalena",
+    "especie": "gato",
+    "edad": "Aproximadamente 5 meses y medio",
+    "sexo": "Hembra",
+    "caracter": "Tranquila, cariñosa y muy dulce",
+    "convivencia": "Se lleva bien con otros gatos y perros",
+    "ubicacion": "Madrid y alrededores",
+    "subtitulo": "5 meses y medio • Tranquila, cariñosa y muy dulce",
+    "descripcion": "Magdalena es una de nuestras pequeñas supervivientes, rescatada en condiciones lamentables. Su compañera Kea ya se marchó a su hogar y ella espera su oportunidad.",
+    "historiaCompleta": "Magdalena es una de nuestras pequeñas supervivientes, fue rescatada en condiciones lamentables. Llegó siendo todavía una cachorrita y, desde entonces, hemos estado cuidando de ella y acompañándola en su recuperación.\n\nHa demostrado ser una gatita maravillosa. Es tranquila, buena y muy cariñosa. Cuando coge confianza, le encanta recibir mimos y estar acompañada.\n\nSu compañera Kea ya ha encontrado una familia y se ha marchado a su nuevo hogar. Magdalena se ha quedado esperando su oportunidad. Y no entendemos por qué, porque tiene muchísimo amor que ofrecer.\n\nBuscamos una familia responsable, que quiera darle un hogar definitivo, que entienda sus necesidades y que disponga de las protecciones necesarias en ventanas, balcones y terrazas.",
+    "foto": "img/magdalena1.jpg",
+    "fotos": [
+      "img/magdalena1.jpg",
+      "img/magdalena2.jpg"
+    ]
+  }
+]

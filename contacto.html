@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - APA Salvando Huellas Madrid</title>
+    <meta name="description" content="Contacta con APA Salvando Huellas Madrid para resolver dudas sobre adopciones, acogidas y colaboración.">
+    <meta property="og:title" content="Contacto - APA Salvando Huellas Madrid">
+    <meta property="og:description" content="Escríbenos para consultar sobre adopciones, acogidas y colaboración.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="site.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="nav-izquierda">
+                <a href="index.html" class="logo-flotante" title="APA Salvando Huellas Madrid">
+                    <img src="img/logo.png" alt="Logo APA Salvando Huellas Madrid">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="adopta.html">Adopta</a></li>
+                        <li><a href="ayuda.html">Colabora</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="adoptados.html">Adoptados</a></li>
+                        <li><a href="noticias.html">Noticias</a></li>
+                        <li><a href="contacto.html" class="activo">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="nav-derecha">
+                <a href="https://www.instagram.com/asalvandohuellasmadrid/?hl=es" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://www.facebook.com/p/APA-Salvando-Huellas-Madrid-100081084556541/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Contacta con Nosotros</h1>
+        <p>Estamos aquí para resolver tus dudas sobre adopciones, acogidas y colaboraciones.</p>
+    </div>
+
+    <main class="contacto-main">
+        <div class="contacto-grid">
+            
+            <div class="contacto-info">
+                <h2>Información de Contacto</h2>
+                <p>Ponte en contacto con nuestro equipo a través de estos canales:</p>
+
+                <div class="info-card">
+                    <div class="info-icon">📧</div>
+                    <div>
+                        <h3>Correo Electrónico</h3>
+                        <p><a href="mailto:asalvandohuellasmadrid@gmail.com">asalvandohuellasmadrid@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">🌍</div>
+                    <div>
+                        <h3>Redes Sociales</h3>
+                        <div class="social-links-inline">
+                            <a href="https://www.instagram.com/asalvandohuellasmadrid/?hl=es" target="_blank" rel="noopener noreferrer">Instagram</a>
+                            <a href="https://www.facebook.com/share/1FJwT4Q8pW/" target="_blank" rel="noopener noreferrer">Facebook</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contacto-form-container">
+                <h2>Envíanos un Mensaje</h2>
+                <p id="formulario-ayuda" style="margin-bottom: 1rem; color: var(--color-texto-suave);">Al enviar, se abrirá tu aplicación de correo con el mensaje preparado para que lo revises y lo envíes.</p>
+                <form data-contact-form class="form-contacto" aria-describedby="formulario-ayuda">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono (opcional)</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="600 00 00 00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Escribe tu consulta..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Enviar Mensaje</button>
+                    <p id="estadoFormulario" role="status" aria-live="polite" style="margin-top: 1rem;"></p>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 APA Salvando Huellas Madrid. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
